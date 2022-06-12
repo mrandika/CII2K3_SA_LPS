@@ -20,7 +20,7 @@ class String(object):
     return len(self.value)
 
   def getPalindrome(self):
-    return self.value[self.start:self.end + 1]
+    return self.value[self.start:self.end + 1].strip()
 
 def bf_LPS(string: String, benchmarkTable: list, DEBUG_MODE = False):
   # Init benchmark variable
@@ -67,6 +67,7 @@ def bf_LPS(string: String, benchmarkTable: list, DEBUG_MODE = False):
 
   benchmarkTable.append({
       'string': string.value,
+      'result': string.getPalindrome(),
       'elapsed': elapsed,
       'comparisons': comparison
   })
@@ -145,6 +146,7 @@ def dp_LPS(string: String, benchmarkTable: list, DEBUG_MODE = False):
 
   benchmarkTable.append({
       'string': string.value,
+      'result': string.getPalindrome(),
       'elapsed': elapsed,
       'comparisons': comparison
   })
@@ -203,14 +205,14 @@ def main():
   print("--- === --- SUMMARY --- === ---\n")
 
   print(">> Brute Force <<")
-  print("{:<40} {:<25} {:<10}".format('String', 'Time Elapsed', 'Comparisons Made'))
+  print("{:<40} {:<10} {:<25} {:<10}".format('String', 'Result', 'Time Elapsed', 'Comparisons Made'))
   for result in bf_benchmark_table:
-    print("{:<40} {:<25} {:<10}".format(result['string'], result['elapsed'], result['comparisons']))
+    print("{:<40} {:<10} {:<25} {:<10}".format(result['string'], result['result'], result['elapsed'], result['comparisons']))
 
   print("\n>> Dynamic Programming <<")
-  print("{:<40} {:<25} {:<10}".format('String', 'Time Elapsed', 'Comparisons Made'))
+  print("{:<40} {:<10} {:<25} {:<10}".format('String', 'Result', 'Time Elapsed', 'Comparisons Made'))
   for result in dp_benchmark_table:
-    print("{:<40} {:<25} {:<10}".format(result['string'], result['elapsed'], result['comparisons']))
+    print("{:<40} {:<10} {:<25} {:<10}".format(result['string'], result['result'], result['elapsed'], result['comparisons']))
 
 if __name__ == "__main__":
   main()
